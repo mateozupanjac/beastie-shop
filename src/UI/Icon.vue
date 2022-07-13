@@ -1,6 +1,5 @@
 <template>
   <component ref="iconRef" :is='loadedIcon' class="icon" :style="computedStyles" @click="$emit('click')">
-    <slot></slot>
   </component>
 </template>
 
