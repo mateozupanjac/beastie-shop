@@ -1,16 +1,17 @@
 <template>
-  <component :is='isLink'><slot></slot></component>
-  <button class="button" :style="addStyle" @mouseover="toggleHover" @click="onClick">
-    <slot></slot>
-  </button>
+    <router-link v-if="link" :to="{name: to}" :style="addStyle" class="button" @mouseover.stop="toggleHover" @mouseleave.stop="toggleHover">
+      <slot></slot>
+    </router-link>
+    <button  v-else class="button" :style="addStyle" @click="$emit('onClick')" @mouseover.self="toggleHover" @mouseleave.self="toggleHover">
+      <slot></slot>
+    </button>
 </template>
 
 <script setup>
-import {computed , ref} from 'vue';
-import { RouterLink, useRouter } from 'vue-router';
-const router = useRouter();
-const hover = ref(false)
-const emits = defineEmits('click')
+import {computed, ref} from 'vue';
+import { RouterLink } from 'vue-router'
+import Icon from '../UI/Icon.vue'
+defineEmits('onClick')
 const props = defineProps({
   type: {
     type: String,
@@ -33,23 +34,31 @@ const props = defineProps({
   },
   to: {
     type: String,
-  }
+  },
 });
 
-const onClick = () => {
+const hover = ref(false)
 
-}
 
-const isLink = computed(() => link ? '<router-link></router-link>' : 'button')
+const addStyle = computed(() => {
+  const notHovered = {
+    width: props.size === 'expand' ? '100%' : '30%',
+    background: props.variant === 'outline' ? 'rgba(255,255,255,0.3)' : `var(--color-${props.type})`,
+    color: props.variant === 'outline' ? `var(--color-${props.type})` : '#fff'
+  }
+  const hovered = {
+      width: props.size === 'expand' ? '100%' : '30%',
+      background: props.variant === 'outline' ?  `var(--color-${props.type})` : 'rgba(255,255,255,0.3)',
+      borderColor: props.variant === 'outline' ? 'none' : `var(--color-${props.type})`,
+      color: props.variant === 'outline' ? '#fff' : `var(--color-${props.type})`,
+  }
 
-const addStyle = computed(() => ({
-  width: props.size === 'expand' ? '100%' : '200px',
-  background: props.variant === 'outline' ? 'rgba(255,255,255,0.3)' : `var(--color-${props.type})`,
-  color: props.variant === 'outline' ? `var(--color-${props.type})` : '#fff'
-}))
+  return hover.value ? hovered : notHovered
+})
 
-function toggleHover(){
-  hover.value = !hover.value
+function toggleHover(event){
+  if(event.type === "mouseover" && hover.value) return
+    hover.value = !hover.value
 }
   
 </script>
@@ -57,19 +66,16 @@ function toggleHover(){
 <style scoped lang="scss">
 .button {
   @include flexbox;
+  // gap: 8px;
   text-align: center;
   text-transform: uppercase;
+  text-decoration: none;
   font-weight: 700;
   padding: 0.8rem;
   cursor: pointer;
   border: 2px solid v-bind('`var(--color-${props.type})`');
   border-radius: 5px;
-  &:hover {
-    background-color: v-bind('`var(--color-${props.variant === "outline" ? props.type : "#fff"})`');
-    border-color: v-bind('`var(--color-${props.type}-light)`');
-    color: v-bind('`var(--color-${props.variant === "outline" ? "#fff" : props.type})`')
-  }
+  transition: all 0.3s ease;
 }
-
 
 </style>

@@ -13,7 +13,7 @@
           <icon name="menu" @click="onToggleMenu"></icon>
           <transition name="menu">
             <ul v-if="mobile && toggleMenu" class="menu-navbar-links">
-              <router-link  :to="{name: 'profile'}"><Icon name="person" /><span>Profile</span></router-link  >
+              <router-link  :to="{name: 'profile'}"><Icon name="person"/><span>Profile</span></router-link  >
               <router-link  :to="{name: 'contact'}"><Icon name="contact" /><span>Contact</span></router-link >
               <router-link  :to="{name: 'cart'}"><Icon name="cart"/><span>Cart</span> <span class="badge">1</span></router-link >
             </ul>

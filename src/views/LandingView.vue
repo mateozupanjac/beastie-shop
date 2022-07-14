@@ -10,13 +10,14 @@
       <img class="hero-bg" src="src/assets/images/pauline-loroy-U3aF7hgUSrk-unsplash.jpg" alt="hero-image">
     </picture>
     <div class="btn-lead">
-      <Button type="success" variant="outline">{{label.leadTheWay}}</Button>
+      <Button type="primary" link to="home">{{label.leadTheWay}}<Icon name="ArrowRight" :hover="false"/></Button>
     </div>
   </section>
 </template>
 <script setup>
 import label from '../constants/labels'
 import Button from '../UI/Button.vue'
+import Icon from '../UI/Icon.vue';
 </script>
 <style scoped lang="scss">
 .container{
@@ -50,7 +51,8 @@ import Button from '../UI/Button.vue'
   z-index: 10;
   width: 100%;
   padding: 1rem;
-  bottom: 0;
+  bottom: 10px;
+  font-family: Rubik;
 }
 
 
