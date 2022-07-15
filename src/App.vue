@@ -1,7 +1,7 @@
 <template>
   <Navigation v-if="route.path !== '/'"/>
   <main>
-    <RouterView />
+    <RouterView/>
   </main>
 </template>
 

@@ -16,7 +16,7 @@ const props = defineProps({
   type: {
     type: String,
     default: 'primary',
-    validator: (val) => ['success', 'info', 'error', 'primary', ].includes(val)
+    validator: (val) => ['success', 'error', 'primary', 'secondary', 'ternary', 'octet'].includes(val)
   },
   variant: {
     type: String,
@@ -42,12 +42,12 @@ const hover = ref(false)
 
 const addStyle = computed(() => {
   const notHovered = {
-    width: props.size === 'expand' ? '100%' : '30%',
+    minWidth: props.size === 'expand' ? '100%' : '30%',
     background: props.variant === 'outline' ? 'rgba(255,255,255,0.3)' : `var(--color-${props.type})`,
     color: props.variant === 'outline' ? `var(--color-${props.type})` : '#fff'
   }
   const hovered = {
-      width: props.size === 'expand' ? '100%' : '30%',
+      minWidth: props.size === 'expand' ? '100%' : '30%',
       background: props.variant === 'outline' ?  `var(--color-${props.type})` : 'rgba(255,255,255,0.3)',
       borderColor: props.variant === 'outline' ? 'none' : `var(--color-${props.type})`,
       color: props.variant === 'outline' ? '#fff' : `var(--color-${props.type})`,

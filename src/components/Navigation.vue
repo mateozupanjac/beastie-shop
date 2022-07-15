@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted} from "vue";
+import { ref, onMounted, onBeforeUnmount} from "vue";
 import { RouterLink } from "vue-router";
 import Icon from "../UI/Icon.vue";
 
@@ -33,6 +33,7 @@ window.addEventListener('resize', checkWindowSize)
 let timer;
 const mobile = ref(false);
 const toggleMenu = ref(false);
+
 
 onMounted(() => {
   mobile.value = window.innerWidth < 769
@@ -44,9 +45,20 @@ function checkWindowSize(){
 }
   
 const onToggleMenu = () => {
-  console.log('toggled')
   toggleMenu.value = !toggleMenu.value
 }
+
+const closeMenu = () => {
+  toggleMenu.value = false;
+}
+
+document.addEventListener('click', (e) => {
+  if(e.target === document.body) closeMenu()
+  })
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', closeMenu)
+})
 </script>
 
 <style scoped lang="scss">
@@ -60,14 +72,16 @@ const onToggleMenu = () => {
     width: 100%;
     padding: 1rem;
     @include flexbox($justify: space-between);
-    background: #4A3930;
+    background: var(--color-primary);
     li, a {
       @include flexbox;
-      color: #C1BFBB;
+      color: var(--color-octet);
       padding: 0 7px;
    }
 }
-.brand {}
+.brand {
+  font-size: 1.4rem;
+}
 .navigation-items {
    ul:not(.menu-navbar-links) {
     @include flexbox($justify: space-between);

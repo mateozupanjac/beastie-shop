@@ -1,26 +1,25 @@
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
-  --color-primary: #4A3930;
-  --color-secondary: #6E615F;
-  --color-ternary: #5A595E;
-  --color-cloud: #C1BFBB;
+  --color-primary: #2C3639;
+  --color-secondary: #3F4E4F;
+  --color-ternary: #A27B5C;
+  --color-octet: #DCD7C9;
   --color-error: rgb(250, 44, 44);
   --color-success: rgb(9, 142, 0);
   --color-info: rgb(0, 115, 160);
 
 
---color-primary-light: #635147;
-  --color-secondary-light: #a18f8c;
-  --color-ternary-light: #5A595E;
-  --color-cloud-light: #dddbd6;
+--color-primary-light: #5a6569;
+  --color-secondary-light: #5b6565;
+  --color-ternary-light: #cda07c;
   --color-error-light: rgb(249, 93, 93);
   --color-success-light: rgb(17, 200, 4);
   --color-info-light: rgb(16, 158, 213);
 
-  --color-primary-transparent: #4A393055;
-  --color-secondary-transparent: #6E615F55;
-  --color-ternary-transparent: #5A595E55;
-  --color-cloud-transparent: #C1BFBB55;
+  --color-primary-transparent: #2C363922;
+  --color-secondary-transparent: #3F4E4F22;
+  --color-ternary-transparent: #A27B5C22;
+  --color-octet-transparent: #DCD7C922;
   --color-error: rgba(250, 44, 44, 0.5);
 }
 
